@@ -13,6 +13,7 @@
 #define VZ0 0.2
 #define X0 0.5
 #define Y0 0.2
+#define Z0 1
 
 #define NUM_OF_ELLIPSE 10000
 #define NUM_OF_POINT 10

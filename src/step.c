@@ -66,11 +66,10 @@ struct ellipse_parameters_3D space_next_step(struct ellipse_parameters_3D* prev_
 
     for (int i = 0; i < SPACE_DIM; i++)
     {
-        S[0][i] = next_ep.ex[i];
-        S[1][i] = next_ep.ey[i];
-        S[2][i] = next_ep.ez[i];
+        S[i][0] = next_ep.ex[i];
+        S[i][1] = next_ep.ey[i];
+        S[i][2] = next_ep.ez[i];
     }
-    transposition(S);
     inv(invS, S);
 
     double vec_x_in_plane_coord[SPACE_DIM], vec_v_in_plane_coord[SPACE_DIM];
@@ -107,4 +106,6 @@ struct ellipse_parameters_3D space_next_step(struct ellipse_parameters_3D* prev_
     next_ep.vx_finish = new_vec_v[0];
     next_ep.vy_finish = new_vec_v[1];
     next_ep.vz_finish = new_vec_v[2];
+
+    next_ep.v_finish = mag_vec(new_vec_v);
 }
