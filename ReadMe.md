@@ -15,4 +15,14 @@ To run this program, you need to have Python installed on your computer. Clone t
 ```bash
 git clone https://github.com/PavlovEgor/Gravity_pinpong.git
 cd Gravity_pinpong
+```
+
+## Usage
+```bash
+cd application/build
+cmake ../
+make
+./pinpong_in_plane_2D
+```
+After that, files with various data on particle trajectories will appear in the application/data folder.
 
