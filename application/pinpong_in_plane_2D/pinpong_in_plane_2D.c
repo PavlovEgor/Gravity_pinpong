@@ -9,9 +9,11 @@
 
 #define VX0 0.2
 #define VY0 0.5
+#define X0 -1
+#define Y0 2
 #define PHI0 2.475859696
-#define NUM_OF_ELLIPSE 10000
-#define NUM_OF_POINT 10
+#define NUM_OF_ELLIPSE 100
+#define NUM_OF_POINT 100
 
 
 int main(){
@@ -22,10 +24,10 @@ int main(){
     cartesian_point_file = fopen("../data/max.txt", "w");
     polar_point_file = fopen("../data/max_polar.txt", "w");
 
-    char output_type = 0; // 0 - XY, 1 - RPhi, != 0 or != 1 both
+    char output_type = 2; // 0 - XY, 1 - RPhi, != 0 or != 1 both
 
     struct ellipse_parameters tmp;
-    tmp = planar_initialize_first_ep(VX0, VY0, PHI0);
+    tmp = planar_initialize_first_ep(VX0, VY0, X0, Y0);
 
     printf("%.10f \n", tmp.Energy);
 

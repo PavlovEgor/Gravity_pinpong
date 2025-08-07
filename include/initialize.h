@@ -7,6 +7,7 @@
 struct ellipse_parameters planar_initialize_first_ep(
     double vx, 
     double vy, 
-    double phi);
+    double x,
+    double y);
 
 #endif
