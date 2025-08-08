@@ -83,8 +83,6 @@ void save_m_points_of_ellipse_3D(
         x_vec_pc[1] = r * sin(phi);
         
         mat_vec_prod(x_vec_sc, S, x_vec_pc);
-        printf("%.6f %.6f %.6f \n", x_vec_pc[0], x_vec_pc[1], x_vec_pc[2]);
-
 
         fprintf(ellipse_point_file, "%.6f %.6f %.6f \n", x_vec_sc[0], x_vec_sc[1], x_vec_sc[2]);
     }
