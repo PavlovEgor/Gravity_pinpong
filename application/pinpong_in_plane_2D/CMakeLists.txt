@@ -10,7 +10,8 @@ set(SOURCE_EXE pinpong_in_plane_2D.c)		# Установка переменной
 set(SOURCE_LIB 	../../src/general_ellipse_properties.c
 				../../src/initialize.c
 				../../src/step.c
-				../../src/saving_data.c)			# Тоже самое, но для библиотеки
+				../../src/saving_data.c
+				../../src/basic_linalg.c)			# Тоже самое, но для библиотеки
 
 add_library(PlanarPinPong STATIC ${SOURCE_LIB})	# Создание статической библиотеки с именем foo
 

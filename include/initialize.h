@@ -10,4 +10,14 @@ struct ellipse_parameters planar_initialize_first_ep(
     double x,
     double y);
 
+    
+struct ellipse_parameters_3D space_initialize_first_ep(
+    double vx, 
+    double vy,
+    double vz, 
+    double x,
+    double y, 
+    double z);
+
+
 #endif

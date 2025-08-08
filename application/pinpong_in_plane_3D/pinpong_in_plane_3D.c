@@ -24,24 +24,21 @@ int main(){
     FILE *ellipse_point_file, *x_finish_point_file, *cartesian_point_file, *polar_point_file;
     ellipse_point_file = fopen("../data/ellipses.txt", "w");
     x_finish_point_file = fopen("../data/x_finish.txt", "w");
-    cartesian_point_file = fopen("../data/max.txt", "w");
-    polar_point_file = fopen("../data/max_polar.txt", "w");
 
     char output_type = 0; // 0 - XY, 1 - RPhi, != 0 or != 1 both
 
     struct ellipse_parameters_3D tmp;
-    tmp = planar_initialize_first_ep(VX0, VY0, PHI0);
+    tmp = space_initialize_first_ep(VX0, VY0, VZ0, X0, Y0, Z0);
 
-    printf("%.10f \n", tmp.Energy);
+    printf("%.10f \n", tmp.ep.Energy);
 
     for (int i = 0; i < NUM_OF_ELLIPSE; i++)
     {
 
-        tmp = planar_next_step(&tmp);
+        tmp = space_next_step(&tmp);
 
-        fprintf(x_finish_point_file, "%.6f \n", tmp.x_finish);
-        save_max_of_ellipse(&tmp, cartesian_point_file, polar_point_file, output_type);
-        save_m_points_of_ellipse(&tmp, NUM_OF_POINT, ellipse_point_file);
+        fprintf(x_finish_point_file, "%.6f %.6f\n", tmp.x_finish, tmp.y_finish);
+        save_m_points_of_ellipse_2D(&tmp, NUM_OF_POINT, ellipse_point_file);
     }
     
     return 0;

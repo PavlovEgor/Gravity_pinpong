@@ -35,8 +35,8 @@ int main(){
     {
         fprintf(x_finish_point_file, "%.6f \n", tmp.x_finish);
         tmp = planar_next_step(&tmp);
-        save_max_of_ellipse(&tmp, cartesian_point_file, polar_point_file, output_type);
-        save_m_points_of_ellipse(&tmp, NUM_OF_POINT, ellipse_point_file);
+        save_max_of_ellipse_2D(&tmp, cartesian_point_file, polar_point_file, output_type);
+        save_m_points_of_ellipse_2D(&tmp, NUM_OF_POINT, ellipse_point_file);
     }
     
     return 0;

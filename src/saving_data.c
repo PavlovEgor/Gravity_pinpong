@@ -1,7 +1,7 @@
 #include "saving_data.h"
+#include "basic_linalg.h"
 
-
-void save_m_points_of_ellipse(struct ellipse_parameters* ep, int m, FILE *ellipse_point_file){
+void save_m_points_of_ellipse_2D(struct ellipse_parameters* ep, int m, FILE *ellipse_point_file){
     double r, phi;
 
     for (int i = 0; i < m; i++)
@@ -12,7 +12,7 @@ void save_m_points_of_ellipse(struct ellipse_parameters* ep, int m, FILE *ellips
     }
 }
 
-void save_max_of_ellipse(
+void save_max_of_ellipse_2D(
     struct ellipse_parameters* ep, 
     FILE *cartesian_point_file, 
     FILE *polar_point_file,
@@ -51,4 +51,38 @@ void save_max_of_ellipse(
         fprintf(polar_point_file, "%.6f %.6f \n", pow(x1 * x1 + y1 * y1, 0.5), phi_from_xy(x, y));
     }
     
+}
+
+
+void save_m_points_of_ellipse_3D(
+    struct ellipse_parameters_3D* ep, 
+    int m, 
+    FILE *ellipse_point_file){
+
+    double S[SPACE_DIM][SPACE_DIM];
+    double x_vec_pc[SPACE_DIM];
+    double x_vec_sc[SPACE_DIM];
+
+    x_vec_pc[3] = 0;
+
+    for (int i = 0; i < SPACE_DIM; i++)
+    {
+        S[i][0] = next_ep.ex[i];
+        S[i][1] = next_ep.ey[i];
+        S[i][2] = next_ep.ez[i];
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        phi = (ep->ep.phi_start) + i * ((ep->ep.phi_finish) - (ep->ep.phi_start)) / (m-1);
+        r = (ep->ep.p) / (1 + (ep->ep.e) * cos(phi - (ep->ep.theta)));
+        
+        x_vec_pc[0] = r * cos(phi);
+        x_vec_pc[1] = r * sin(phi);
+        
+        mat_vec_prod(x_vec_sc, S, x_vec_pc);
+
+        fprintf(ellipse_point_file, "%.6f %.6f %.6f \n", x_vec_sc[0], x_vec_sc[1], x_vec_sc[2]);
+    }
+
 }
