@@ -1,6 +1,7 @@
 #ifndef LA
 #define LA
 
+#include "constants.h"
 #include "math.h"
 
 double phi_from_xy(double x, double y);
@@ -14,5 +15,7 @@ void mat_vec_prod(double y[SPACE_DIM], double A[SPACE_DIM][SPACE_DIM], double x[
 void transposition(double A[SPACE_DIM][SPACE_DIM]);
 
 double mag_vec(double vec[SPACE_DIM]);
+
+double det(double A[SPACE_DIM][SPACE_DIM]);
 
 #endif

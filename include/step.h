@@ -2,6 +2,7 @@
 #define STEP
 
 #include "constants.h"
+#include "basic_linalg.h"
 #include "general_ellipse_properties.h"
 
 struct ellipse_parameters planar_next_step(struct ellipse_parameters* prev_ep);

@@ -37,9 +37,11 @@ double tangent(struct ellipse_parameters* ep, double x, double y){
 }
 
 
-double find_intersection(struct ellipse_parameters* ep){
+void find_intersection(struct ellipse_parameters* ep){
     // y = y0: Ax^2 + (2By0 + D)x + Cy0^2 + Ey0 + F = 0 => a_1x^2 + b_1x + c_1 = 0
 
+    ep -> y_finish = ep -> y_start;
+    
     double a_1, b_1, c_1, d, x1, x2, alpha;
 
     a_1 = ep -> A;
@@ -56,7 +58,7 @@ double find_intersection(struct ellipse_parameters* ep){
     } else {
         ep -> x_finish = x2;
     }
-
+    
     ep -> phi_finish = phi_from_xy(ep -> x_finish, ep -> y_finish);
 
     ep -> r_finish = pow(ep -> y_finish * ep -> y_finish + ep -> x_finish * ep -> x_finish, 0.5);

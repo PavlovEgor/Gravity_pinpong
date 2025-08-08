@@ -2,6 +2,7 @@
 #define SAVE
 
 #include "constants.h"
+#include "basic_linalg.h"
 #include "general_ellipse_properties.h"
 
 

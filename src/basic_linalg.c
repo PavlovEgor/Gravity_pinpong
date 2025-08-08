@@ -19,7 +19,7 @@ void cross_prod(double cross[SPACE_DIM], double x1[SPACE_DIM], double x2[SPACE_D
     cross[1] = x1[2] * x2[0] - x1[0] * x2[2];
     cross[2] = x1[0] * x2[1] - x1[1] * x2[0];
 
-    double norm = pow(cross[0] * cross[0] + cross[1] * cross[1] + cross[2] * cross[2], 0.5);
+    double norm = sqrt(cross[0] * cross[0] + cross[1] * cross[1] + cross[2] * cross[2]);
 
     for (int i = 0; i < SPACE_DIM; i++)
     {
@@ -39,15 +39,15 @@ void inv(double invA[SPACE_DIM][SPACE_DIM], double A[SPACE_DIM][SPACE_DIM]){
     double detM = det(A);
 
     invA[0][0] = (A[1][1] * A[2][2] - A[1][2] * A[2][1]) / detM;
-    invA[0][1] = -(A[1][0] * A[2][2] - A[1][2] * A[2][0]) / detM;
-    invA[0][2] = (A[1][0] * A[2][1] - A[1][1] * A[2][0]) / detM;
+    invA[1][0] = -(A[1][0] * A[2][2] - A[1][2] * A[2][0]) / detM;
+    invA[2][0] = (A[1][0] * A[2][1] - A[1][1] * A[2][0]) / detM;
 
-    invA[1][0] = -(A[0][1] * A[2][2] - A[0][2] * A[2][1]) / detM;
+    invA[0][1] = -(A[0][1] * A[2][2] - A[0][2] * A[2][1]) / detM;
     invA[1][1] = (A[0][0] * A[2][2] - A[0][2] * A[2][0]) / detM;
-    invA[1][2] = -(A[1][0] * A[2][1] - A[1][1] * A[2][0]) / detM;
+    invA[2][1] = -(A[0][0] * A[2][1] - A[0][1] * A[2][0]) / detM;
 
-    invA[2][0] = (A[0][1] * A[1][2] - A[0][2] * A[2][1]) / detM;
-    invA[2][1] = -(A[0][0] * A[1][2] - A[0][2] * A[1][0]) / detM;
+    invA[0][2] = (A[0][1] * A[1][2] - A[0][2] * A[1][1]) / detM;
+    invA[1][2] = -(A[0][0] * A[1][2] - A[0][2] * A[1][0]) / detM;
     invA[2][2] = (A[0][0] * A[1][1] - A[0][1] * A[1][0]) / detM;
     
 }
@@ -56,6 +56,7 @@ void inv(double invA[SPACE_DIM][SPACE_DIM], double A[SPACE_DIM][SPACE_DIM]){
 void mat_vec_prod(double y[SPACE_DIM], double A[SPACE_DIM][SPACE_DIM], double x[SPACE_DIM]){
     for (int i = 0; i < SPACE_DIM; i++)
     {
+        y[i] = 0;
         for (int j = 0; j < SPACE_DIM; j++)
         {
             y[i] += A[i][j] * x[j];
@@ -80,5 +81,5 @@ void transposition(double A[SPACE_DIM][SPACE_DIM]){
 
 
 double mag_vec(double vec[SPACE_DIM]){
-    return pow(vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2], 0,5);
+    return sqrt(vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2]);
 }

@@ -1,5 +1,4 @@
 #include "saving_data.h"
-#include "basic_linalg.h"
 
 void save_m_points_of_ellipse_2D(struct ellipse_parameters* ep, int m, FILE *ellipse_point_file){
     double r, phi;
@@ -63,14 +62,17 @@ void save_m_points_of_ellipse_3D(
     double x_vec_pc[SPACE_DIM];
     double x_vec_sc[SPACE_DIM];
 
-    x_vec_pc[3] = 0;
+    x_vec_pc[2] = 0;
 
     for (int i = 0; i < SPACE_DIM; i++)
     {
-        S[i][0] = next_ep.ex[i];
-        S[i][1] = next_ep.ey[i];
-        S[i][2] = next_ep.ez[i];
+        S[i][0] = ep -> ex[i];
+        S[i][1] = ep -> ey[i];
+        S[i][2] = ep -> ez[i];
     }
+
+    double r, phi;
+
 
     for (int i = 0; i < m; i++)
     {
@@ -81,6 +83,8 @@ void save_m_points_of_ellipse_3D(
         x_vec_pc[1] = r * sin(phi);
         
         mat_vec_prod(x_vec_sc, S, x_vec_pc);
+        printf("%.6f %.6f %.6f \n", x_vec_pc[0], x_vec_pc[1], x_vec_pc[2]);
+
 
         fprintf(ellipse_point_file, "%.6f %.6f %.6f \n", x_vec_sc[0], x_vec_sc[1], x_vec_sc[2]);
     }

@@ -2,6 +2,7 @@
 #define EP
 
 #include "constants.h"
+#include "basic_linalg.h"
 
 struct ellipse_parameters
 {
@@ -71,7 +72,7 @@ void def_general_param(struct ellipse_parameters* ep);
 
 void def_polar_param(struct ellipse_parameters* ep);
 
-double find_intersection(struct ellipse_parameters* ep);
+void find_intersection(struct ellipse_parameters* ep);
 
 double tangent(struct ellipse_parameters* ep, double x, double y);
 
