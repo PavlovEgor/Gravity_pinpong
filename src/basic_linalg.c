@@ -4,13 +4,18 @@
 double phi_from_xy(double x, double y){
     if (x > 0 && y > 0){
         return atan(y / x);
-    }else if ((x < 0 && y > 0) || (x > 0 && y < 0))
+    }else if ((x < 0 && y > 0))
     {
         return PI + atan(y / x);
     } else if (x < 0 && y < 0)
     {
+        return PI + atan(y / x);
+    } else if (x > 0 && y < 0)
+    {
         return 2 * PI + atan(y / x);
+        printf("%.6f \n", 2 * PI + atan(y / x));
     }
+    
 }
 
 
